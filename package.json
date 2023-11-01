@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dwesh163/tableau-de-notes/issues"
   },
-  "homepage": "https://github.com/dwesh163/tableau-de-notes#readme"
+  "homepage": "https://github.com/dwesh163/tableau-de-notes#readme",
+  "dependencies": {
+    "electron-debug": "^3.2.0"
+  }
 }
