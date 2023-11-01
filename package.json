@@ -1,0 +1,19 @@
+{
+  "name": "tableau-de-notes",
+  "version": "1.0.0",
+  "description": "a app to see my marks",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwesh163/tableau-de-notes.git"
+  },
+  "author": "Dwesh163",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dwesh163/tableau-de-notes/issues"
+  },
+  "homepage": "https://github.com/dwesh163/tableau-de-notes#readme"
+}
