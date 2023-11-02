@@ -1,0 +1,27 @@
+.gradient-custom {
+    background: rgb(152, 255, 17);
+    background: linear-gradient(129deg, rgba(152, 255, 17, 1) 0%, rgba(0, 212, 255, 1) 100%);
+}
+.main .d-flex{
+    gap: 50px;
+    align-content: stretch;
+}
+.w-48{
+    min-width: 300px;
+    width: calc(50% - 25px);
+}
+.table-bordered{
+    border: 12px;
+    border-color: #fff;
+}
+
+@media (max-width: 800px) {
+    .w-48 {
+        width: 100%;
+    }
+}
+@media (orientation:landscape) {
+    .gradient-custom {
+        background-color: black;
+    }
+}
