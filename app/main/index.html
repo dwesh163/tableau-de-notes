@@ -15,13 +15,16 @@
         <div class="bg-dark text-white" style="border-radius: 1rem">
             <div class="card-body p-5 text-center">
                 <div class="mb-md-1 mt-md-1 pb-5 main">
-                    <h2 class="fw-bold text-uppercase" style="text-align: left;">Matu</h2>
+                    <div class="d-flex justify-content-between">
+                        <h2 class="fw-bold text-uppercase" style="text-align: left;">Matu</h2>
+                        <h2 class="fw-bold text-uppercase" style="text-align: left;">Ehouarn Duriaux</h2>
+                    </div>
                     <hr /><br><br>
                     <div class="d-flex flex-wrap w-100">
                         <div class="w-48">
                             <h4 class="mb-md-3">Semetre 1</h4>
                             <table id="dtBasicExample" class="w-100 table" cellspacing="0"
-                                style="  border-bottom-width: 10px;">
+                                style="border-bottom-width: 10px;">
                                 <thead>
                                     <tr class="text-white">
                                         <th class="text-white">
@@ -53,8 +56,8 @@
                                     <tr class="text-white">
                                         <td>Economie et droit</td>
                                         <td class="border-1">5</td>
-                                        <td class="border-1">5</td>
-                                        <td class="border-1">5</td>
+                                        <td class="border-1"></td>
+                                        <td class="border-1"></td>
                                         <td></td>
                                     </tr>
                                     <tr class="text-white">
@@ -95,6 +98,8 @@
                                 <tbody>
                                     <tr class="text-white">
                                         <td>Math</td>
+                                        <td class="border-1">4</td>
+                                        <td class="border-1">5</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
@@ -105,13 +110,17 @@
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
+                                        <td class="border-1"></td>
+                                        <td class="border-1"></td>
                                         <td></td>
                                     </tr>
                                     <tr class="text-white">
                                         <td>Economie et droit</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
-                                        <td class="border-1">5</td>
+                                        <td class="border-1">5.5</td>
+                                        <td class="border-1"></td>
+                                        <td class="border-1"></td>
                                         <td></td>
                                     </tr>
                                     <tr class="text-white">
@@ -119,6 +128,8 @@
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
+                                        <td class="border-1"></td>
+                                        <td class="border-1"></td>
                                         <td></td>
                                     </tr>
                                     <tr class="text-white">
@@ -126,6 +137,8 @@
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
                                         <td class="border-1">5</td>
+                                        <td class="border-1"></td>
+                                        <td class="border-1"></td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -135,15 +148,44 @@
                     </div>
                 </div>
             </div>
+
+            <div>
+                <div><h6>matu</h6></div>
+                <div><h6>epsic</h6></div>
+                <div><h6>cie</h6></div>
+            </div>
+
+
+
         </div>
 
+    </section>
 
+
+
+        <script>
+        
+            const cells = document.querySelectorAll(".border-1");
+        
+            cells.forEach((cell) => {
+            const value = parseFloat(cell.textContent);
+        
+            if (value >= 1) {
+                cell.classList.add("red");
+            } 
+            if (value >= 5) {
+                cell.classList.add("orange");
+            } 
+            if (value >= 5.5){
+                cell.classList.add("green");
+            }
+            });
+        
+        </script>
 
 
 </body>
 
-<script>
-    localStorage.setItem("myCat", "Tom");
-</script>
+
 
 </html>

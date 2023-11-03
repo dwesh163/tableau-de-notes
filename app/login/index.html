@@ -14,6 +14,8 @@
       href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
     />
     <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   </head>
   <body>
     <form action="" , id="loginForm">
@@ -34,14 +36,7 @@
                               <div class="table-responsive">
                                 <table class="table user-list">
                                   <tbody>
-                                    <tr>
-                                      <td style="cursor: pointer;" onclick="window.location.href='../../app/main/index.html'">
-                                        <h4 class="fw-bold mb-1 text-white">
-                                          Ehouarn Duriaux
-                                        </h4>
-                                        <span class="text-white-50">last modified 01.11.2023</span>
-                                      </td>
-                                    </tr>
+                                
                                   </tbody>
                                 </table>
                               </div>
@@ -62,7 +57,48 @@
         </div>
       </section>
     </form>
+
+    <div class="BeforeLogin">
+      <tr class="trClass">
+        <td style="cursor: pointer;" onclick="window.location.href='../../app/main/index.html'">
+          <h4 class="fw-bold mb-1 text-white Name">
+            Nom Prenom
+          </h4>
+          <span class="text-white-50">last modified 01.11.2023</span>
+        </td>
+      </tr>
+    </div>
   </body>
 
+  <script>
+
+    var data = JSON.parse(localStorage.getItem("data"));
+
+    var tbody = $("tbody");
+    var nextTbody
+
+    if (data != null){
+        
+      for (var person in data) {
+        var clonedRow = $(".BeforeLogin").clone();
+    
+        clonedRow.find(".Name").text(`${data[person]["name"]} ${data[person]["lastname"]}`);
+        clonedRow.find(".text-white-50").text("last modified " + data[person]["modified"]);
+
+        nextTbody += `
+          <tr>
+            <td style="cursor: pointer;" onclick="window.location.href='../../app/main/?${data[person]["name"]}${data[person]["lastname"]}'">
+              ${clonedRow.html()}
+            </td>
+          </tr>`
+  
+      }
+
+      tbody.html(nextTbody)
+    }
+
+
+  </script>
+  
   
 </html>
