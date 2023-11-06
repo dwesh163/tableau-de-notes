@@ -30,7 +30,7 @@
                     <h2 class="fw-bold mb-1 text-uppercase">Sign up</h2>
                     <hr/>
                     <div class="form-outline form-white mb-3 typeLinkClass">
-                        <input type="link" id="typeLinkX" class="form-control form-control-lg"/>
+                        <input type="link" id="typeLinkX" class="form-control form-control-lg" autocomplete="off"/>
                         <label class="form-label" for="typeLinkX" style="margin-left: 0px" >Github Link</label>
                         <div class="form-notch">
                           <div class="form-notch-leading" style="width: 9px"></div>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-outline form-white mb-3 typeNameClass">
-                        <input type="text" id="typeNameX" class="form-control form-control-lg"/>
+                        <input type="text" id="typeNameX" class="form-control form-control-lg" autocomplete="off"/>
                         <label class="form-label" for="typeNameX" style="margin-left: 0px" >First Name</label>
                         <div class="form-notch">
                           <div class="form-notch-leading" style="width: 9px"></div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-outline form-white mb-3 typeLastNameClass">
-                        <input type="text" id="typeLastNameX" class="form-control form-control-lg"/>
+                        <input type="text" id="typeLastNameX" class="form-control form-control-lg" autocomplete="off"/>
                         <label class="form-label" for="typeLastNameX" style="margin-left: 0px" >Last name</label>
                         <div class="form-notch">
                           <div class="form-notch-leading" style="width: 9px"></div>
@@ -120,7 +120,7 @@
       if (data == null){
         data = {}
       }
-      if (`${name}-${lastName}` in data){
+      if (`${name}.${lastName}` in data){
        alert("il y a deja un compte avec ces informations")
       }
     
