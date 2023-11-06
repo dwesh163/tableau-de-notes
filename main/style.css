@@ -6,7 +6,7 @@
     gap: 50px;
     align-content: stretch;
 }
-.w-48{
+.w-48{ 
     min-width: 300px;
     width: calc(50% - 25px);
 }
@@ -24,7 +24,7 @@
     background-color: rgb(62, 204, 33);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .w-48 {
         width: 100%;
     }
