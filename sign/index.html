@@ -122,7 +122,39 @@
 					link = 'https://' + link;
 				}
 
-				
+				async function fetchAPI(url) {
+					try {
+						const response = await fetch(url);
+
+						if (response.ok) {
+							const data = await response.json();
+							return data;
+						} else {
+							console.error('Network response was not ok.');
+						}
+					} catch (error) {
+						console.error('An error occurred:', error);
+					}
+				}
+
+				const init = async () => {
+					data = await fetchAPI(link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob', ''));
+					localData = localStorage.getItem('data');
+
+					if (localData == null) {
+						localData = {};
+					}
+
+					for (var person in data) {
+						localData[person] = data[person];
+						data[person]['url'] = link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob', '');
+					}
+
+					localStorage.setItem('data', JSON.stringify(localData));
+				};
+
+				init();
+				window.location.href = '../';
 			}
 		});
 
