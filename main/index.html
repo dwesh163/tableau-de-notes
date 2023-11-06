@@ -61,7 +61,7 @@
               <th class="text-white">
                 <h6 class="fw-bold">Branche</h6>
               </th>
-              <th class="text-white" colspan="3">
+              <th class="text-white" id="colspanGrade" colspan="3">
                 <h6 class="fw-bold">Note</h6>
               </th>
               <th class="text-white">
@@ -164,6 +164,7 @@
             var clonedtable = $(".BeforeGrades").clone();
 
             clonedtable.find("#title").text(data[i][0]);
+            clonedtable.find("#colspanGrade").attr('colspan', varLenght - 2);
 
 
             nextgrades += clonedtable.html()
