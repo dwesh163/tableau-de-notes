@@ -134,13 +134,11 @@
             var varTr = ""
             var varLenght = 0
 
-            clonedtable.find("#title").text(data[i][0]);
-
             for (let index = 1; index < Object.keys(data[i]).length; index++) {
                 if (Object.keys(data[i][index]).length > varLenght){
                     varLenght = Object.keys(data[i][index]).length
                 }
-            }
+            }          
 
             varLenght += 1
 
@@ -162,7 +160,11 @@
             }
 
             $("tbody").html(varTr)
+            
             var clonedtable = $(".BeforeGrades").clone();
+
+            clonedtable.find("#title").text(data[i][0]);
+
 
             nextgrades += clonedtable.html()
         }
