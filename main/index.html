@@ -1,200 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prenom Nom Notes</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  </head>
-  <body class="gradient-custom vh-100 p-3">
-    <section>
-      <div class="bg-dark text-white" style="border-radius: 1rem">
-        <div class="card-body p-5 text-center">
-          <div class="mb-md-1 mt-md-1 pb-5 main">
-            <div class="d-flex justify-content-between">
-              <h2 class="fw-bold text-uppercase" style="text-align: left">
-                Matu
-              </h2>
-              <h2
-                class="fw-bold text-uppercase"
-                id="username"
-                style="text-align: left"
-              >
-                Ehouarn Duriaux
-              </h2>
-            </div>
-            <hr />
-            <br /><br />
-            <div class="d-flex flex-wrap w-100" id="grades">
-              
-            </div>
-          </div>
-        </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Prenom Nom Notes</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+	<body class="gradient-custom vh-100 p-3">
+		<section>
+			<div class="bg-dark text-white" style="border-radius: 1rem">
+				<div class="card-body p-5 text-center">
+					<div class="mb-md-1 mt-md-1 pb-5 main">
+						<div class="d-flex justify-content-between">
+							<h2 class="fw-bold text-uppercase" id="page" style="text-align: left"></h2>
+							<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
+						</div>
+						<hr />
+						<br /><br />
+						<div class="d-flex flex-wrap w-100" id="grades"></div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center">
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-secondary active">
+							<a href="" class="text-white text-uppercase">Matu</a>
+						</label>
+						<label class="btn btn-secondary">
+							<a href="" class="text-white text-uppercase">Cours</a>
+						</label>
+						<label class="btn btn-secondary">
+							<a href="" class="text-white text-uppercase">CIE</a>
+						</label>
+						<label class="btn btn-secondary">
+							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+								<style>
+									svg {
+										fill: #ffffff;
+									}
+								</style>
+								<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+							</svg>
+						</label>
+					</div>
+				</div>
+			</div>
+		</section>
 
-        <div>
-          <div><h6>matu</h6></div>
-          <div><h6>epsic</h6></div>
-          <div><h6>cie</h6></div>
-        </div>
-      </div>
-    </section>
+		<div class="BeforeGrades">
+			<div class="w-48">
+				<h4 class="mb-md-3" id="title">Semetre 1</h4>
+				<table id="dtBasicExample" class="w-100 table" cellspacing="0" style="border-bottom-width: 10px">
+					<thead>
+						<tr class="text-white">
+							<th class="text-white">
+								<h6 class="fw-bold">Branche</h6>
+							</th>
+							<th class="text-white" id="colspanGrade" colspan="3">
+								<h6 class="fw-bold">Note</h6>
+							</th>
+							<th class="text-white">
+								<h6 class="fw-bold">Moyenne</h6>
+							</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</body>
 
-    <div class="BeforeGrades">
-      <div class="w-48">
-        <h4 class="mb-md-3" id="title">Semetre 1</h4>
-        <table
-          id="dtBasicExample"
-          class="w-100 table"
-          cellspacing="0"
-          style="border-bottom-width: 10px"
-        >
-          <thead>
-            <tr class="text-white">
-              <th class="text-white">
-                <h6 class="fw-bold">Branche</h6>
-              </th>
-              <th class="text-white" id="colspanGrade" colspan="3">
-                <h6 class="fw-bold">Note</h6>
-              </th>
-              <th class="text-white">
-                <h6 class="fw-bold">Moyenne</h6>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </body>
+	<script>
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
 
-<script>
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return "";
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+		username = getParameterByName('name');
+		console.log(username);
 
-    $("#username").text(getParameterByName("name").replace(".", " "));
-    
-    $(document).prop('title', 'New Title');
+		$('#username').text(getParameterByName('name').replace('.', ' '));
 
-    document.title = `Grade of ${getParameterByName("name").replace(".", " ")}`;
+		if (getParameterByName('p') == null) {
+			page = JSON.parse(localStorage.getItem('data'))[username]['page'][0];
+			console.log(page);
+			console.log(localStorage.getItem('data'));
+			window.location.href = `?name=${username}&p=${page}`;
+		}
 
+		$('#page').text(getParameterByName('p').replace('.', ' '));
 
-</script>
-<script>
+		$(document).prop('title', 'New Title');
 
-    function getAverage(numbers){
-        numbers.shift();
-        
-        return  Math.round(numAverage(numbers)*2)/2;
+		document.title = `Grade of ${getParameterByName('name').replace('.', ' ')}`;
+	</script>
+	<script>
+		function getAverage(numbers) {
+			numbers.shift();
 
-    }
-    
+			return Math.round(numAverage(numbers) * 2) / 2;
+		}
 
-    function numAverage(a, f) {
-    f = f || function(n) {
-        return n;
-    };
-    var b = a.length,
-        c = 0, i;
-    for (i = 0; i < b; i++){
-        c += Number(f(a[i]));
-    }
-    return c/b;
-    }
+		function numAverage(a, f) {
+			f =
+				f ||
+				function (n) {
+					return n;
+				};
+			var b = a.length,
+				c = 0,
+				i;
+			for (i = 0; i < b; i++) {
+				c += Number(f(a[i]));
+			}
+			return c / b;
+		}
+	</script>
 
-</script>
+	<script>
+		$('.BeforeGrades').hide();
 
-<script>
-    $(".BeforeGrades").hide()
+		var grades = $('#grades');
+		var tbody = $('tbody');
+		var nextgrades = '';
+		var data = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
-    var grades = $("#grades");
-    var tbody = $("tbody");
-    var nextgrades = ""
-    var data = JSON.parse(localStorage.getItem("data"))[getParameterByName('name')]["grades"]
+		for (let i = 0; i < Object.keys(data).length; i++) {
+			if (data != null) {
+				var clonedtable = $('.BeforeGrades').clone();
+				var varTr = '';
+				var varLenght = 0;
 
-    for (let i = 0; i < Object.keys(data).length; i++) {
-        if (data != null){
-            var clonedtable = $(".BeforeGrades").clone();
-            var varTr = ""
-            var varLenght = 0
+				for (let index = 1; index < Object.keys(data[i]).length; index++) {
+					if (Object.keys(data[i][index]).length > varLenght) {
+						varLenght = Object.keys(data[i][index]).length;
+					}
+				}
 
-            for (let index = 1; index < Object.keys(data[i]).length; index++) {
-                if (Object.keys(data[i][index]).length > varLenght){
-                    varLenght = Object.keys(data[i][index]).length
-                }
-            }          
+				varLenght += 1;
 
-            varLenght += 1
+				for (let Branche = 1; Branche < Object.keys(data[i]).length; Branche++) {
+					varTr += `<tr class="text-white"><td>${data[i][Branche][0]}</td>`;
 
-            for (let Branche = 1; Branche < Object.keys(data[i]).length; Branche++) {
-                varTr += `<tr class="text-white"><td>${data[i][Branche][0]}</td>`
+					for (let grade = 1; grade < Object.keys(data[i][Branche]).length; grade++) {
+						varTr += `<td class="border-1">${data[i][Branche][grade]}</td>`;
+					}
 
-                for (let grade = 1; grade < Object.keys(data[i][Branche]).length; grade++) {
-                    varTr += `<td class="border-1">${data[i][Branche][grade]}</td>`
-                }
-            
-                for (let space = 0; space < (varLenght - Object.keys(data[i][Branche]).length) -1; space++) {
-                    varTr += `<td class="border-1"></td>`
-                }
+					for (let space = 0; space < varLenght - Object.keys(data[i][Branche]).length - 1; space++) {
+						varTr += `<td class="border-1"></td>`;
+					}
 
+					varTr += `<td>${getAverage(data[i][Branche])}</td>`;
+					varTr += '</tr>';
+				}
 
-                varTr += `<td>${getAverage(data[i][Branche])}</td>`
+				$('tbody').html(varTr);
 
-                varTr += "</tr>"
-            }
+				var clonedtable = $('.BeforeGrades').clone();
 
-            $("tbody").html(varTr)
-            
-            var clonedtable = $(".BeforeGrades").clone();
+				clonedtable.find('#title').text(data[i][0]);
+				clonedtable.find('#colspanGrade').attr('colspan', varLenght - 2);
 
-            clonedtable.find("#title").text(data[i][0]);
-            clonedtable.find("#colspanGrade").attr('colspan', varLenght - 2);
+				nextgrades += clonedtable.html();
+			}
+		}
 
+		grades.html(nextgrades);
+	</script>
 
-            nextgrades += clonedtable.html()
-        }
+	<script>
+		const cells = document.querySelectorAll('.border-1');
 
-    }
+		cells.forEach((cell) => {
+			const value = parseFloat(cell.textContent);
 
-    grades.html(nextgrades)
-
-</script>
-
-
-  <script>
-    const cells = document.querySelectorAll(".border-1");
-
-    cells.forEach((cell) => {
-      const value = parseFloat(cell.textContent);
-
-      if (value >= 1) {
-        cell.classList.add("red");
-      }
-      if (value >= 4) {
-        cell.classList.add("orange");
-      }
-      if (value >= 5) {
-        cell.classList.add("green");
-      }
-    });
-  </script>
-  
-
-
+			if (value >= 1) {
+				cell.classList.add('red');
+			}
+			if (value >= 4) {
+				cell.classList.add('orange');
+			}
+			if (value >= 5) {
+				cell.classList.add('green');
+			}
+		});
+	</script>
 </html>

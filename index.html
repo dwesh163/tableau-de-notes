@@ -1,106 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-    />
-    <title>Login</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css" />
+		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+		<title>Login</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<form action="" , id="loginForm">
+			<section class="vh-100 gradient-custom">
+				<div class="container py-5 h-100">
+					<div class="row d-flex justify-content-center align-items-center h-100">
+						<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+							<div class="card bg-dark text-white" style="border-radius: 1rem">
+								<div class="card-body p-5 text-center">
+									<div class="mb-md-5 mt-md-4 pb-5">
+										<h2 class="fw-bold mb-1 text-uppercase">Login</h2>
+										<hr />
+										<div class="container bootstrap snippets bootdey">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="main-box no-header clearfix">
+														<div class="main-box-body clearfix">
+															<div class="table-responsive">
+																<table class="table user-list">
+																	<tbody></tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<p class="mb-0">Add new account? <a href="sign" class="text-white-50">Click here</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</form>
 
-  </head>
-  <body>
-    <form action="" , id="loginForm">
-      <section class="vh-100 gradient-custom">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div class="card bg-dark text-white" style="border-radius: 1rem">
-                <div class="card-body p-5 text-center">
-                  <div class="mb-md-5 mt-md-4 pb-5">
-                    <h2 class="fw-bold mb-1 text-uppercase">Login</h2>
-                    <hr/>
-                    <div class="container bootstrap snippets bootdey">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="main-box no-header clearfix">
-                            <div class="main-box-body clearfix">
-                              <div class="table-responsive">
-                                <table class="table user-list">
-                                  <tbody>
-                                
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="mb-0">Add new account? <a href="sign" class="text-white-50 ">Click here</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </form>
+		<div class="BeforeLogin">
+			<tr class="trClass">
+				<td style="cursor: pointer" onclick="window.location.href='main'">
+					<h4 class="fw-bold mb-1 text-white Name">Nom Prenom</h4>
+					<span class="text-white-50">last modified 01.11.2023</span>
+				</td>
+			</tr>
+		</div>
+	</body>
 
-    <div class="BeforeLogin">
-      <tr class="trClass">
-        <td style="cursor: pointer;" onclick="window.location.href='main'">
-          <h4 class="fw-bold mb-1 text-white Name">
-            Nom Prenom
-          </h4>
-          <span class="text-white-50">last modified 01.11.2023</span>
-        </td>
-      </tr>
-    </div>
-  </body>
+	<script>
+		var data = JSON.parse(localStorage.getItem('data'));
 
-  <script>
+		$('.BeforeLogin').hide();
 
-    var data = JSON.parse(localStorage.getItem("data"));
+		var tbody = $('tbody');
+		var nextTbody;
 
-    $(".BeforeLogin").hide()
+		if (data != null) {
+			for (var person in data) {
+				var clonedRow = $('.BeforeLogin').clone();
 
-    var tbody = $("tbody");
-    var nextTbody
+				clonedRow.find('.Name').text(`${data[person]['name']} ${data[person]['lastname']}`);
+				clonedRow.find('.text-white-50').text('last modified ' + data[person]['modified']);
 
-    if (data != null){
-        
-      for (var person in data) {
-        var clonedRow = $(".BeforeLogin").clone();
-    
-        clonedRow.find(".Name").text(`${data[person]["name"]} ${data[person]["lastname"]}`);
-        clonedRow.find(".text-white-50").text("last modified " + data[person]["modified"]);
-
-        nextTbody += `
+				nextTbody += `
           <tr>
-            <td style="cursor: pointer;" onclick="window.location.href='main/?name=${data[person]["name"]}.${data[person]["lastname"]}'">
+            <td style="cursor: pointer;" onclick="window.location.href='main/?name=${data[person]['name']}.${data[person]['lastname']}'">
               ${clonedRow.html()}
             </td>
-          </tr>`
-  
-      }
+          </tr>`;
+			}
 
-      tbody.html(nextTbody)
-    }
-
-
-  </script>
-  
-  
+			tbody.html(nextTbody);
+		}
+	</script>
 </html>
