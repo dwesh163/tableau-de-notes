@@ -9,7 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="gradient-custom vh-100 p-3">
     <section>
@@ -18,7 +18,7 @@
                 <div class="mb-md-1 mt-md-1 pb-5 main">
                     <div class="d-flex justify-content-between">
                         <h2 class="fw-bold text-uppercase" style="text-align: left;">Matu</h2>
-                        <h2 class="fw-bold text-uppercase" style="text-align: left;">Ehouarn Duriaux</h2>
+                        <h2 class="fw-bold text-uppercase" id="username" style="text-align: left;">Ehouarn Duriaux</h2>
                     </div>
                     <hr /><br><br>
                     <div class="d-flex flex-wrap w-100">
@@ -162,31 +162,44 @@
 
     </section>
 
-
-
-        <script>
-        
-            const cells = document.querySelectorAll(".border-1");
-        
-            cells.forEach((cell) => {
-            const value = parseFloat(cell.textContent);
-        
-            if (value >= 1) {
-                cell.classList.add("red");
-            } 
-            if (value >= 5) {
-                cell.classList.add("orange");
-            } 
-            if (value >= 5.5){
-                cell.classList.add("green");
-            }
-            });
-        
-        </script>
-
-
 </body>
 
+<script>
+        
+    const cells = document.querySelectorAll(".border-1");
+
+    cells.forEach((cell) => {
+    const value = parseFloat(cell.textContent);
+
+    if (value >= 1) {
+        cell.classList.add("red");
+    } 
+    if (value >= 5) {
+        cell.classList.add("orange");
+    } 
+    if (value >= 5.5){
+        cell.classList.add("green");
+    }
+    });
+
+</script>
+<script>
+    function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    console.log(getParameterByName('name'))
+
+    console.log($("#username").text)
+
+    $("#username").text(getParameterByName('name').replace("."," "));
+</script>
 
 
 </html>
