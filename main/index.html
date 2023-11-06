@@ -165,7 +165,24 @@
 </body>
 
 <script>
-        
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    $("#username").text(getParameterByName("name").replace(".", " "));
+    
+    $(document).prop('title', 'New Title');
+
+    document.title = `Grade of ${getParameterByName("name").replace(".", " ")}`;
+
+
+</script>
     const cells = document.querySelectorAll(".border-1");
 
     cells.forEach((cell) => {
