@@ -96,6 +96,29 @@
 
 
 </script>
+<script>
+
+    function getAverage(numbers){
+        numbers.shift();
+        
+        return  Math.round(numAverage(numbers)*2)/2;
+
+    }
+    
+
+    function numAverage(a, f) {
+    f = f || function(n) {
+        return n;
+    };
+    var b = a.length,
+        c = 0, i;
+    for (i = 0; i < b; i++){
+        c += Number(f(a[i]));
+    }
+    return c/b;
+    }
+
+</script>
 
 <script>
     $(".BeforeGrades").hide()
@@ -127,15 +150,13 @@
                 for (let grade = 1; grade < Object.keys(data[i][Branche]).length; grade++) {
                     varTr += `<td class="border-1">${data[i][Branche][grade]}</td>`
                 }
-
-                console.log(varLenght, Object.keys(data[i][Branche]).length, varLenght - Object.keys(data[i][Branche]).length)
             
                 for (let space = 0; space < (varLenght - Object.keys(data[i][Branche]).length) -1; space++) {
-                    console.log(varLenght, Object.keys(data[i][Branche]).length)
                     varTr += `<td class="border-1"></td>`
                 }
 
-                varTr += `<td>Moyenne</td>`
+
+                varTr += `<td>${getAverage(data[i][Branche])}</td>`
 
                 varTr += "</tr>"
             }
