@@ -23,36 +23,14 @@
 						<div class="d-flex flex-wrap w-100" id="grades"></div>
 					</div>
 				</div>
-				<div class="d-flex justify-content-between p-3 ">
-					<a class="btn btn-primary d-inline-flex align-items-center" href="/" style="background-color: rgb(16, 146, 140); border: none;">
+				<div class="d-flex justify-content-between p-3">
+					<a class="btn badge btn-primary d-inline-flex align-items-center" href="/" style="background-color: rgb(16, 146, 140); border: none">
 						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                          </svg>
+							<path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+						</svg>
 						Come Back
-                        </a>
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-						<label class="btn btn-secondary active">
-							<a href="" class="text-white text-uppercase">Matu</a>
-						</label>
-						<label class="btn btn-secondary">
-							<a href="" class="text-white text-uppercase">Cours</a>
-						</label>
-						<label class="btn btn-secondary">
-							<a href="" class="text-white text-uppercase">CIE</a>
-						</label>
-						<label class="btn btn-secondary">
-							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-								<style>
-									svg {
-										fill: #ffffff;
-									}
-								</style>
-								<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-							</svg>
-						</label>
-					</div>
-
+					</a>
+					<div class="btn-group btn-group-toggle" id="btn-container" data-toggle="buttons"></div>
 				</div>
 			</div>
 		</section>
@@ -109,6 +87,7 @@
 
 		document.title = `Grade of ${getParameterByName('name').replace('.', ' ')}`;
 	</script>
+
 	<script>
 		function getAverage(numbers) {
 			numbers.shift();
@@ -135,37 +114,37 @@
 	<script>
 		$('.BeforeGrades').hide();
 
-		var grades = $('#grades');
-		var tbody = $('tbody');
-		var nextgrades = '';
-		var data = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+		let grades = $('#grades');
+		let tbody = $('tbody');
+		let nextgrades = '';
+		let dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
-		for (let i = 0; i < Object.keys(data).length; i++) {
-			if (data != null) {
-				var clonedtable = $('.BeforeGrades').clone();
-				var varTr = '';
-				var varLenght = 0;
+		for (let i = 0; i < Object.keys(dataGrades).length; i++) {
+			if (dataGrades != null) {
+				clonedtable = $('.BeforeGrades').clone();
+				let varTr = '';
+				let varLenght = 0;
 
-				for (let index = 1; index < Object.keys(data[i]).length; index++) {
-					if (Object.keys(data[i][index]).length > varLenght) {
-						varLenght = Object.keys(data[i][index]).length;
+				for (let index = 1; index < Object.keys(dataGrades[i]).length; index++) {
+					if (Object.keys(dataGrades[i][index]).length > varLenght) {
+						varLenght = Object.keys(dataGrades[i][index]).length;
 					}
 				}
 
 				varLenght += 1;
 
-				for (let Branche = 1; Branche < Object.keys(data[i]).length; Branche++) {
-					varTr += `<tr class="text-white"><td>${data[i][Branche][0]}</td>`;
+				for (let Branche = 1; Branche < Object.keys(dataGrades[i]).length; Branche++) {
+					varTr += `<tr class="text-white"><td>${dataGrades[i][Branche][0]}</td>`;
 
-					for (let grade = 1; grade < Object.keys(data[i][Branche]).length; grade++) {
-						varTr += `<td class="border-1">${data[i][Branche][grade]}</td>`;
+					for (let grade = 1; grade < Object.keys(dataGrades[i][Branche]).length; grade++) {
+						varTr += `<td class="border-1">${dataGrades[i][Branche][grade]}</td>`;
 					}
 
-					for (let space = 0; space < varLenght - Object.keys(data[i][Branche]).length - 1; space++) {
+					for (let space = 0; space < varLenght - Object.keys(dataGrades[i][Branche]).length - 1; space++) {
 						varTr += `<td class="border-1"></td>`;
 					}
 
-					varTr += `<td>${getAverage(data[i][Branche])}</td>`;
+					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
 					varTr += '</tr>';
 				}
 
@@ -173,7 +152,7 @@
 
 				var clonedtable = $('.BeforeGrades').clone();
 
-				clonedtable.find('#title').text(data[i][0]);
+				clonedtable.find('#title').text(dataGrades[i][0]);
 				clonedtable.find('#colspanGrade').attr('colspan', varLenght - 2);
 
 				nextgrades += clonedtable.html();
@@ -181,6 +160,51 @@
 		}
 
 		grades.html(nextgrades);
+	</script>
+
+	<script>
+		$('.templateButton').hide();
+
+		let templatButton = `<div>
+                <label class="btn btn-secondary" >
+                    <a href="" class="text-white text-uppercase badge" style="text-decoration:none; "></a>
+                </label>
+            </div>`;
+
+		let templatButtonPlus = `<label class="btn btn-secondary">
+							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+								<style>
+									svg {
+										fill: #ffffff;
+									}
+								</style>
+								<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+							</svg>
+						</label>`;
+
+		HTMLButton = $('<div></div>').html(templatButton).children();
+
+		let dataButton = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')]['page'];
+		let nextButton = '';
+		let containerButton = $('#btn-container');
+
+		for (let i = 0; i < Object.keys(dataButton).length; i++) {
+			let clonedbutton = HTMLButton;
+
+			clonedbutton.find('a').text(dataButton[i]);
+			clonedbutton.find('a').attr('href', `?name=${getParameterByName('name')}&p=${dataButton[i]}`);
+			clonedbutton.find('.btn').removeClass('active');
+
+			if (clonedbutton.children().text().trim() == getParameterByName('p')) {
+				clonedbutton.find('.btn').addClass('active');
+			}
+
+			nextButton += clonedbutton.html();
+		}
+
+		nextButton += templatButtonPlus;
+		containerButton.html(nextButton);
 	</script>
 
 	<script>
