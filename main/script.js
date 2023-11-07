@@ -1,6 +1,7 @@
 async function fetchAPI(url) {
+	let jsonUrl = url.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', '');
 	try {
-		const response = await fetch(url);
+		const response = await fetch(jsonUrl);
 
 		if (response.ok) {
 			const data = await response.json();
@@ -18,10 +19,13 @@ const init = async () => {
 
 	for (var person in localData) {
 		if (localData[person]['type'] == 'github') {
-			data = await fetchAPI(localData[person]["url"]);
+			let jsonUrl = localData[person]['url'];
+            console.log(jsonUrl)
+			data = await fetchAPI(localData[person]['url']);
 
 			for (var person in data) {
 				localData[person] = data[person];
+				localData[person]['url'] = jsonUrl;
 			}
 		}
 	}
