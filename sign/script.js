@@ -59,10 +59,11 @@ function getInfo(event) {
 			data[`${name}-${lastName}`] = dataObjet;
 			localStorage.setItem('data', JSON.stringify(data));
 
-			//window.location.href = '../';
+			window.location.href = '../';
 		}
 	} else {
 		init(GithubUrl);
+
 	}
 }
 
