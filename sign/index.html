@@ -166,40 +166,30 @@
 		function strUcFirst(a) {
 			return (a + '').charAt(0).toUpperCase() + (a + '').substr(1);
 		}
-	</script>
-	<script>
-		const link = document.getElementById('typeLinkX');
-		const name = document.getElementById('typeNameX');
-		const lastName = document.getElementById('typeLastNameX');
-
-		if (link) {
-			link.addEventListener('input', function () {
-				if (link.value.trim() === '') {
-					link.classList.remove('active');
+		/**
+		 * Functions to prevent form's group label to stay in the input
+		 */
+		$('#typeNameX').on('input', function () {
+			if ($(this).val()) {
+				$(this).addClass('active');
 				} else {
-					link.classList.add('active');
+				$(this).removeClass('active');
 				}
 			});
-		}
-
-		if (name) {
-			name.addEventListener('input', function () {
-				if (name.value.trim() === '') {
-					name.classList.remove('active');
+		$('#typeLastNameX').on('input', function () {
+			if ($(this).val()) {
+				$(this).addClass('active');
 				} else {
-					name.classList.add('active');
+				$(this).removeClass('active');
 				}
 			});
-		}
-
-		if (lastName) {
-			lastName.addEventListener('input', function () {
-				if (lastName.value.trim() === '') {
-					lastName.classList.remove('active');
+		$('#typeLinkX').on('input', function () {
+			if ($(this).val()) {
+				$(this).addClass('active');
 				} else {
-					lastName.classList.add('active');
+				$(this).removeClass('active');
 				}
 			});
-		}
+
 	</script>
 </html>
