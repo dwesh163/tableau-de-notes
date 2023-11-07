@@ -91,16 +91,59 @@
 	</script>
 
 	<script>
+		async function fetchAPI2(url) {
+			console.log('COUCOU');
+			console.log(url);
+
+			try {
+				let response = await fetch(url);
+				console.log('res', response);
+
+				if (response.ok) {
+					const data = await response.json();
+					return data;
+				} else {
+					console.error('Network response was not ok.');
+				}
+			} catch (error) {
+				console.error('An error occurred:', error);
+			}
+		}
+		async function init_from_url(json_data_url) {
+			console.log(json_data_url);
+			if (!json_data_url.includes('https://')) {
+				json_data_url = 'https://' + json_data_url;
+			}
+			let json_url = json_data_url.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', '');
+			let data = await fetchAPI2(json_url);
+			//console.log(link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', ''))
+			localData = localStorage.getItem('data');
+
+			if (localData == null) {
+				localData = {};
+			}
+
+			for (var person in data) {
+				console.log(person);
+				localData[person] = data[person];
+				data[person]['url'] = json_url;
+			}
+
+			//console.log(localData)
+
+			localStorage.setItem('data', JSON.stringify(localData));
+		}
+
 		const loginForm = document.getElementById('loginForm');
 
 		loginForm.addEventListener('submit', function (e) {
 			e.preventDefault();
 
-			let link = document.getElementById('typeLinkX').value;
+			let json_data_url = document.getElementById('typeLinkX').value;
 			const name = strUcFirst(document.getElementById('typeNameX').value).trim();
 			const lastName = strUcFirst(document.getElementById('typeLastNameX').value).trim();
 
-			if (link == '') {
+			if (json_data_url == '') {
 				console.log(name, lastName);
 				data = JSON.parse(localStorage.getItem('data'));
 
@@ -123,42 +166,7 @@
 					window.location.href = '../';
 				}
 			} else {
-				if (!link.includes('https://')) {
-					link = 'https://' + link;
-				}
-
-				async function fetchAPI(url) {
-					try {
-						const response = await fetch(url);
-
-						if (response.ok) {
-							const data = await response.json();
-							return data;
-						} else {
-							console.error('Network response was not ok.');
-						}
-					} catch (error) {
-						console.error('An error occurred:', error);
-					}
-				}
-
-				const init = async () => {
-					data = await fetchAPI(link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob', ''));
-					localData = localStorage.getItem('data');
-
-					if (localData == null) {
-						localData = {};
-					}
-
-					for (var person in data) {
-						localData[person] = data[person];
-						data[person]['url'] = link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob', '');
-					}
-
-					localStorage.setItem('data', JSON.stringify(localData));
-				};
-
-				init();
+				init_from_url(json_data_url);
 				window.location.href = '../';
 			}
 		});
@@ -166,30 +174,31 @@
 		function strUcFirst(a) {
 			return (a + '').charAt(0).toUpperCase() + (a + '').substr(1);
 		}
+
 		/**
 		 * Functions to prevent form's group label to stay in the input
 		 */
 		$('#typeNameX').on('input', function () {
 			if ($(this).val()) {
 				$(this).addClass('active');
-				} else {
+			} else {
 				$(this).removeClass('active');
-				}
-			});
+			}
+		});
 		$('#typeLastNameX').on('input', function () {
 			if ($(this).val()) {
 				$(this).addClass('active');
-				} else {
+			} else {
 				$(this).removeClass('active');
-				}
-			});
+			}
+		});
 		$('#typeLinkX').on('input', function () {
 			if ($(this).val()) {
 				$(this).addClass('active');
-				} else {
+			} else {
 				$(this).removeClass('active');
-				}
-			});
+			}
+		});
 
 	</script>
 </html>
