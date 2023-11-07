@@ -109,13 +109,13 @@
 				console.error('An error occurred:', error);
 			}
 		}
-		async function init_from_url(json_data_url) {
-			console.log(json_data_url);
-			if (!json_data_url.includes('https://')) {
-				json_data_url = 'https://' + json_data_url;
+		async function init_from_url(jsonDataUrl) {
+			console.log(jsonDataUrl);
+			if (!jsonDataUrl.includes('https://')) {
+				jsonDataUrl = 'https://' + jsonDataUrl;
 			}
-			let json_url = json_data_url.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', '');
-			let data = await fetchAPI2(json_url);
+			let jsonUrl = jsonDataUrl.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', '');
+			let data = await fetchAPI2(jsonUrl);
 			//console.log(link.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('blob/', ''))
 			localData = localStorage.getItem('data');
 
@@ -126,7 +126,7 @@
 			for (var person in data) {
 				console.log(person);
 				localData[person] = data[person];
-				data[person]['url'] = json_url;
+				data[person]['url'] = jsonUrl;
 			}
 
 			//console.log(localData)
@@ -139,11 +139,11 @@
 		loginForm.addEventListener('submit', function (e) {
 			e.preventDefault();
 
-			let json_data_url = document.getElementById('typeLinkX').value;
+			let jsonDataUrl = document.getElementById('typeLinkX').value;
 			const name = strUcFirst(document.getElementById('typeNameX').value).trim();
 			const lastName = strUcFirst(document.getElementById('typeLastNameX').value).trim();
 
-			if (json_data_url == '') {
+			if (jsonDataUrl == '') {
 				console.log(name, lastName);
 				data = JSON.parse(localStorage.getItem('data'));
 
@@ -166,7 +166,7 @@
 					window.location.href = '../';
 				}
 			} else {
-				init_from_url(json_data_url);
+				init_from_url(jsonDataUrl);
 				window.location.href = '../';
 			}
 		});
