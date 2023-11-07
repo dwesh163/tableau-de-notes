@@ -17,50 +17,75 @@
 	</head>
 	<body class="gradient-custom vh-100 p-3">
 		<div class="container">
-		<section>
-			<div class="bg-dark text-white" style="border-radius: 1rem">
-				<div class="card-body p-5 text-center">
-					<div class="mb-md-1 mt-md-1 pb-5 main">
-						<div class="d-flex justify-content-between">
-							<h2 class="fw-bold text-uppercase" id="page" style="text-align: left"></h2>
-							<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
+			<section>
+				<div class="bg-dark text-white" style="border-radius: 1rem">
+					<div class="card-body p-5 text-center">
+						<div class="mb-md-1 mt-md-1 pb-5 main">
+							<div class="d-flex justify-content-between">
+								<h2 class="fw-bold text-uppercase" id="page" style="text-align: left"></h2>
+								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
+							</div>
+							<hr />
+							<br /><br />
+							<div class="d-flex flex-wrap w-100" id="grades"></div>
 						</div>
-						<hr />
-						<br /><br />
-						<div class="d-flex flex-wrap w-100" id="grades"></div>
+					</div>
+					<div class="d-flex justify-content-between p-3">
+						<a class="btn badge btn-primary d-inline-flex align-items-center" href="/" style="background-color: rgb(16, 146, 140); border: none">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+							</svg>
+							Come Back
+						</a>
+						<div class="btn-group btn-group-toggle" id="btn-container" data-toggle="buttons"></div>
 					</div>
 				</div>
-				<div class="d-flex justify-content-between p-3">
-					<a class="btn badge btn-primary d-inline-flex align-items-center" href="/" style="background-color: rgb(16, 146, 140); border: none">
-						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="30" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-						</svg>
-						Come Back
-					</a>
-					<div class="btn-group btn-group-toggle" id="btn-container" data-toggle="buttons"></div>
+			</section>
+
+			<div class="BeforeGrades">
+				<div class="w-48">
+					<h4 class="mb-md-3" id="title">Semetre 1</h4>
+					<table id="dtBasicExample" class="w-100 table table-responsive" cellspacing="0" style="border-bottom-width: 10px">
+						<thead>
+							<tr class="text-white">
+								<th class="text-white">
+									<h6 class="fw-bold">Branche</h6>
+								</th>
+								<th class="text-white" id="colspanGrade" colspan="3">
+									<h6 class="fw-bold">Note</h6>
+								</th>
+								<th class="text-white">
+									<h6 class="fw-bold">Moyenne</h6>
+								</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
 				</div>
 			</div>
-		</section>
+		</div>
 
-		<div class="BeforeGrades">
-			<div class="w-48">
-				<h4 class="mb-md-3" id="title">Semetre 1</h4>
-				<table id="dtBasicExample" class="w-100 table table-responsive" cellspacing="0" style="border-bottom-width: 10px">
-					<thead>
-						<tr class="text-white">
-							<th class="text-white">
-								<h6 class="fw-bold">Branche</h6>
-							</th>
-							<th class="text-white" id="colspanGrade" colspan="3">
-								<h6 class="fw-bold">Note</h6>
-							</th>
-							<th class="text-white">
-								<h6 class="fw-bold">Moyenne</h6>
-							</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
+		<!-- Modal -->
+		<div class="modal fade" id="modalAddPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content bg-dark">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Add page</h1>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="color: #fff"></button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group input-group-sm mb-3 bg-dark">
+							<div class="input-group-prepend">
+								<label class="input-group-text text-white" id="inputGroup-sizing-sm" for="addPageInput" style="background-color: rgb(78, 78, 78)">Page name :</label>
+							</div>
+							<input type="text" class="form-control bg-dark text-white" id="addPageInput" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" autocomplete="off" />
+						</div>
+					</div>
+					<div class="modal-footer" style="border: none">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" onclick="SetNewPage()" style="background-color: rgb(16, 146, 140); border: none">Save changes</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -178,7 +203,7 @@
                 </label>
             </div>`;
 
-		let templatButtonPlus = `<label class="btn btn-secondary">
+		let templatButtonPlus = `<a type="button" data-bs-toggle="modal" data-bs-target="#modalAddPage" class="btn btn-secondary">
 							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
 								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
 								<style>
@@ -188,7 +213,7 @@
 								</style>
 								<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
 							</svg>
-						</label>`;
+						</a>`;
 
 		HTMLButton = $('<div></div>').html(templatButton).children();
 
@@ -230,5 +255,14 @@
 				cell.classList.add('green');
 			}
 		});
+	</script>
+
+	<script>
+		function SetNewPage() {
+			data = JSON.parse(localStorage.getItem('data'));
+			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
+			location.reload();
+			localStorage.setItem('data', JSON.stringify(data));
+		}
 	</script>
 </html>
