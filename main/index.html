@@ -180,6 +180,16 @@
 		let nextgrades = '';
 		let dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
+		function addGroup(){
+			console.log(dataGrades)
+			dataGrades.push(['Semetre 1'])
+			console.log(dataGrades)
+			data[getParameterByName('name')][getParameterByName('p')] = dataGrades
+			localStorage.setItem('data', JSON.stringify(data));
+			location.reload();
+
+		}
+
 		if (dataGrades != null) {
 			for (let i = 0; i < Object.keys(dataGrades).length; i++) {
 				clonedtable = $('.BeforeGrades').clone();
@@ -212,7 +222,7 @@
 
 					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
 					varTr += `<td class="border-0">
-					<div class="editbutton btn btn-secondary badge" style="width: 32px; height: 30px;">
+						<div class="editbutton btn btn-secondary badge" style="width: 32px; height: 30px;">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
 											<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
 										</svg>
@@ -226,6 +236,7 @@
 							</td>
 						</tr>`;
 
+
 				$('tbody').html(varTr);
 
 				var clonedtable = $('.BeforeGrades').clone();
@@ -237,6 +248,26 @@
 
 				nextgrades += clonedtable.html();
 			}
+
+			nextgrades += `<div class="w-48" onclick="addGroup()">
+				<a type="button" class="btn btn-secondary editbutton" style=" height: 100%; background-color: rgba(92, 99, 106, 0.2); border: none; display: flex; justify-content: center; align-items: center;">
+    				<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" style="fill: #ffffff;">
+						<!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+						<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+					</svg>
+				</a>
+				</div>`
+			
+		}
+		else{
+			nextgrades = `<div class="w-48" onclick="addGroup()">
+				<a type="button" class="btn btn-secondary editbutton" style=" height: 100%; background-color: rgba(92, 99, 106, 0.2); border: none; display: flex; justify-content: center; align-items: center;">
+    				<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" style="fill: #ffffff;">
+						<!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+						<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+					</svg>
+				</a>
+				</div>`
 		}
 
 		grades.html(nextgrades);
@@ -246,7 +277,7 @@
 		$('.templateButton').hide();
 
 		let templatButton = `<div>
-				<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button"><span style="font-weight: 500;"></span></a>
+				<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" style="padding-top:9.3px;"><span style="font-weight: 500;"></span></a>
             </div>`;
 
 		let templatButtonPlus = `<a type="button" data-bs-toggle="modal" data-bs-target="#modalAddPage" class="btn btn-secondary">
@@ -307,6 +338,7 @@
 		data = JSON.parse(localStorage.getItem('data'));
 		function SetNewPage() {
 			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
+			data[getParameterByName('name')][$('#addPageInput').val()] = [];
 			localStorage.setItem('data', JSON.stringify(data));
 			location.reload();
 		}
