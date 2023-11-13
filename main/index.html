@@ -366,7 +366,8 @@
 			});
 
 			$('.newTitlenput').each(function () {
-				if ($(this).val() != '') {
+				console.log()
+				if ($(this).val() != '' && $(this).attr('data-number')) {
 					data[getParameterByName('name')][getParameterByName('p')][$(this).attr('data-number')][0] = $(this).val();
 				}
 			});
