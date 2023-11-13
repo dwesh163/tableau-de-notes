@@ -185,9 +185,8 @@
 			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 			dataGrades.push(['Semetre 1'])
 			data[getParameterByName('name')][getParameterByName('p')] = dataGrades
-			console.log(data[getParameterByName('name')][getParameterByName('p')]);
-			localStorage.setItem('data', JSON.stringify(data));
-			location.reload();
+			localStorage.setItem("data", JSON.stringify(data))
+			setShowMode("edit")
 		}
 
 		if (dataGrades != null) {
@@ -280,6 +279,10 @@
 				<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" style="padding-top:9.3px;"><span style="font-weight: 500;"></span></a>
             </div>`;
 
+		let resum = `
+			<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" href="" style="padding-top:9.3px;"><span style="font-weight: 500;">resum</span></a>
+		`;
+
 		let templatButtonPlus = `<a type="button" data-bs-toggle="modal" data-bs-target="#modalAddPage" class="btn btn-secondary">
 							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
 								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -312,6 +315,7 @@
 			nextButton += clonedbutton.html();
 		}
 
+		nextButton += resum;
 		nextButton += templatButtonPlus;
 		containerButton.html(nextButton);
 	</script>
@@ -357,7 +361,7 @@
 			}
 			else{
 				setShowMode()
-				window.location.href = `?name=${getParameterByName('name')}&p=${getParameterByName("p")}`;
+				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
 			}
 		}
 
@@ -380,7 +384,7 @@
 			});
 		}
 
-		function setShowMode() {
+		function setShowMode(mode) {
 			console.log($('#editPageInput').val());
 			data = JSON.parse(localStorage.getItem('data'));
 
@@ -418,13 +422,16 @@
 							}
 						}
 					}
-				
-
 			});
 
 			localStorage.setItem('data', JSON.stringify(data));
 			console.log($('#editPageInput').val());
-			//window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
+			if(mode == "edit"){
+				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}&e`;
+			}
+			else{
+				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
+			}
 		}
 
 		if(getParameterByName("e") == ""){
