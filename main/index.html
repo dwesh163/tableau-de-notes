@@ -22,7 +22,10 @@
 					<div class="card-body p-5 text-center">
 						<div class="mb-md-1 mt-md-1 pb-5 main">
 							<div class="d-flex justify-content-between">
-								<h2 class="fw-bold text-uppercase" id="page" style="text-align: left"></h2>
+								<div class="d-flex">
+									<h2 class="fw-bold text-uppercase" id="page" style="text-align: left; width: 100%"></h2>
+									<input type="text" class="fw-bold text-uppercase form-control bg-dark text-white editbutton" id="editPageInput" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" autocomplete="off" />
+								</div>
 								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
 							</div>
 							<hr />
@@ -37,14 +40,32 @@
 							</svg>
 							Come Back
 						</a>
-						<div class="btn-group btn-group-toggle" id="btn-container" data-toggle="buttons"></div>
+						<div class="btn-group" id="btn-container" data-toggle="buttons"></div>
+						<a class="btn badge btn-primary d-inline-flex align-items-center" style="background-color: rgb(16, 146, 140); border: none">
+							<div id="validButton" onclick="setShowMode()">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" style="margin-right: 5px">
+									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+								</svg>
+								valide
+							</div>
+							<div id="editButton" onclick="setEditMode()">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" style="margin-right: 5px">
+									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+								</svg>
+								Edit
+							</div>
+						</a>
 					</div>
 				</div>
 			</section>
 
 			<div class="BeforeGrades">
 				<div class="w-48">
-					<h4 class="mb-md-3" id="title">Semetre 1</h4>
+					<div class="d-flex justify-content-center">
+						<h4 class="mb-md-3 title">Semetre 1</h4>
+						<input type="text" class="form-control bg-dark text-white brancheInput text-center newTitlenput" style="width: 100%" data-text="" data-number="" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+					</div>
+
 					<table id="dtBasicExample" class="w-100 table table-responsive" cellspacing="0" style="border-bottom-width: 10px">
 						<thead>
 							<tr class="text-white">
@@ -71,7 +92,7 @@
 				<div class="modal-content bg-dark">
 					<div class="modal-header">
 						<h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Add page</h1>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="color: #fff"></button>
+						<button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal" aria-label="Close" style="color: #fff"></button>
 					</div>
 					<div class="modal-body">
 						<div class="input-group input-group-sm mb-3 bg-dark">
@@ -107,6 +128,7 @@
 		$('#username').text(getParameterByName('name').replace('.', ' '));
 
 		if (getParameterByName('p') == null) {
+			console.log(JSON.parse(localStorage.getItem('data')));
 			page = JSON.parse(localStorage.getItem('data'))[username]['page'][0];
 			console.log(page);
 			console.log(localStorage.getItem('data'));
@@ -166,7 +188,12 @@
 				varLenght += 1;
 
 				for (let Branche = 1; Branche < Object.keys(dataGrades[i]).length; Branche++) {
-					varTr += `<tr class="text-white"><td>${dataGrades[i][Branche][0]}</td>`;
+					varTr += `<tr class="text-white"><td  style="width: 200px;">
+						<div class="d-flex justify-content-center" >
+									<span class="hideEdit brancheText">${dataGrades[i][Branche][0].replace('_', ' ')}</span>
+									<input type="text" class="form-control bg-dark text-white brancheInput text-center" style="width: 100%;" data-text=${dataGrades[i][Branche][0]} aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+								</div>
+						</td>`;
 
 					for (let grade = 1; grade < Object.keys(dataGrades[i][Branche]).length; grade++) {
 						varTr += `<td class="border-1">${dataGrades[i][Branche][grade]}</td>`;
@@ -177,14 +204,28 @@
 					}
 
 					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
+					varTr += `<td class="border-0">
+					<div class="editbutton btn btn-secondary badge" style="width: 32px; height: 30px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+											<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+										</svg>
+									</div></td>`;
 					varTr += '</tr>';
 				}
+
+				varTr += `<tr>
+							<td class="border-0">
+								<input type="text" class="form-control bg-dark text-white brancheInput newBrancheInput" style="width: 100%;" data-text="" data-number="${i}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+							</td>
+						</tr>`;
 
 				$('tbody').html(varTr);
 
 				var clonedtable = $('.BeforeGrades').clone();
 
-				clonedtable.find('#title').text(dataGrades[i][0]);
+				clonedtable.find('.title').text(dataGrades[i][0]);
+				clonedtable.find('.newTitlenput').attr("data-text", dataGrades[i][0]);
+				clonedtable.find('.newTitlenput').attr('data-number', i);
 				clonedtable.find('#colspanGrade').attr('colspan', varLenght - 2);
 
 				nextgrades += clonedtable.html();
@@ -258,11 +299,80 @@
 	</script>
 
 	<script>
+		data = JSON.parse(localStorage.getItem('data'));
 		function SetNewPage() {
-			data = JSON.parse(localStorage.getItem('data'));
 			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
-			location.reload();
 			localStorage.setItem('data', JSON.stringify(data));
+			location.reload();
+		}
+
+		$('.editbutton').hide();
+		$('#validButton').hide();
+		$('#editButton').show();
+		$('#page').show();
+		$('.hideEdit').show();
+		$('.brancheInput').hide();
+		$('.title').show();
+
+		function setEditMode() {
+			$('.editbutton').show();
+			$('#validButton').show();
+			$('#editButton').hide();
+			$('#page').hide();
+			$('.hideEdit').hide();
+			$('#editPageInput').val(getParameterByName('p'));
+			$('.brancheInput').show();
+			$('.title').hide();
+
+			$('.brancheInput').each(function () {
+				$(this).val($(this).attr('data-text').replace('_', ' '));
+			});
+
+			$('.title').each(function () {
+				$(this).val($(this).attr('data-text').replace('_', ' '));
+			});
+		}
+
+		function setShowMode() {
+			console.log($('#editPageInput').val());
+			data = JSON.parse(localStorage.getItem('data'));
+
+			if ($('#editPageInput').val() != getParameterByName('p')) {
+				newData = [];
+
+				newData.push($('#editPageInput').val());
+				newData.push(...data[getParameterByName('name')]['page']);
+
+				data[getParameterByName('name')]['page'] = newData.filter((page) => page !== getParameterByName('p'));
+				data[getParameterByName('name')][$('#editPageInput').val()] = data[getParameterByName('name')][getParameterByName('p')];
+				data[getParameterByName('name')][getParameterByName('p')] = {};
+			}
+
+			$('.brancheInput').each(function () {
+				for (let i = 0; i <= data[getParameterByName('name')][getParameterByName('p')].length - 1; i++) {
+					for (let j = 1; j < data[getParameterByName('name')][getParameterByName('p')][i].length; j++) {
+						if (data[getParameterByName('name')][getParameterByName('p')][i][j][0] == $(this).attr('data-text')) {
+							data[getParameterByName('name')][getParameterByName('p')][i][j][0] = $(this).val().replace(' ', '_');
+							console.log(data[getParameterByName('name')][getParameterByName('p')][i][j][0], $(this).val());
+						}
+					}
+				}
+			});
+
+			$('.newBrancheInput').each(function () {
+				if ($(this).val() != '') {
+					data[getParameterByName('name')][getParameterByName('p')][$(this).attr('data-number')].push([$(this).val()]);
+				}
+			});
+
+			$('.newTitlenput').each(function () {
+				if ($(this).val() != '') {
+					data[getParameterByName('name')][getParameterByName('p')][$(this).attr('data-number')][0] = $(this).val();
+				}
+			});
+
+			localStorage.setItem('data', JSON.stringify(data));
+			window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
 		}
 	</script>
 </html>
