@@ -54,16 +54,16 @@ function getInfo(event) {
 				lastname: lastName,
 				type: 'local',
 				modified: new Date().toLocaleDateString('fr-FR'),
+				page: ['cours']
 			};
 
-			data[`${name}-${lastName}`] = dataObjet;
+			data[`${name}.${lastName}`] = dataObjet;
 			localStorage.setItem('data', JSON.stringify(data));
 
 			window.location.href = '../';
 		}
 	} else {
 		init(GithubUrl);
-
 	}
 }
 
