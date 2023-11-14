@@ -32,7 +32,14 @@
 								<div class="d-flex">
 									<h2 class="fw-bold text-uppercase" id="page" style="text-align: left; width: 100%"></h2>
 									<input type="text" class="fw-bold text-uppercase form-control bg-dark text-white editbutton" id="editPageInput" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" autocomplete="off" />
+									<button type="button" onclick="rmPage()" class="btn btn-secondary editbutton" style="background-color: #db2f2c; border: none">
+										<svg xmlns="http://www.w3.org/2000/svg" width="23" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+											<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+										</svg>
+									</button>
 								</div>
+
 								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
 							</div>
 							<hr />
@@ -49,13 +56,13 @@
 						</a>
 						<div class="btn-group" id="btn-container" data-toggle="buttons"></div>
 						<div class="btn badge btn-primary d-inline-flex align-items-center" style="background-color: rgb(16, 146, 140); border: none">
-							<a id="validButton" onclick="changeMode()" class="btn btn-secondary text-white text-uppercase" tabindex="-1" role="button" aria-disabled="true" style="background-color: rgb(16, 146, 140); border: none; font-weight: 500;">
+							<a id="validButton" onclick="changeMode()" class="btn btn-secondary text-white text-uppercase" tabindex="-1" role="button" aria-disabled="true" style="background-color: rgb(16, 146, 140); border: none; font-weight: 500">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" style="margin-right: 5px">
 									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
 								</svg>
 								valide
 							</a>
-							<a id="editButton" onclick="changeMode('edit')" class="btn btn-secondary text-white text-uppercase" tabindex="-1" role="button" aria-disabled="true" style="background-color: rgb(16, 146, 140); border: none; font-weight: 500;">
+							<a id="editButton" onclick="changeMode('edit')" class="btn btn-secondary text-white text-uppercase" tabindex="-1" role="button" aria-disabled="true" style="background-color: rgb(16, 146, 140); border: none; font-weight: 500">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16" style="margin-right: 5px">
 									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
 								</svg>
@@ -69,8 +76,14 @@
 			<div class="BeforeGrades">
 				<div class="w-48">
 					<div class="d-flex justify-content-center">
-						<h4 class="mb-md-3 title" data-text="">Semetre 1</h4>
-						<input type="text" class="form-control bg-dark text-white brancheInput text-center newTitlenput" style="width: 100%" data-text="" data-number="" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+						<h4 class="mb-md-3 title" data-text="">Semestre 1</h4>
+						<input type="text" class="form-control bg-dark text-white brancheInput text-center newTitleInput" style="width: 100%" data-text="" data-number="" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+						<button type="button" id="buttonRmGroup" onclick="rmGroup()" class="btn btn-secondary editbutton" style="background-color: #db2f2c; border: none">
+							<svg xmlns="http://www.w3.org/2000/svg" width="23" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+								<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+							</svg>
+						</button>
 					</div>
 
 					<table id="dtBasicExample" class="w-100 table table-responsive" cellspacing="0" style="border-bottom-width: 10px">
@@ -129,17 +142,12 @@
 			return decodeURIComponent(results[2].replace(/\+/g, ' '));
 		}
 
-
 		username = getParameterByName('name');
-		console.log(username);
 
 		$('#username').text(getParameterByName('name').replace('.', ' '));
 
 		if (getParameterByName('p') == null) {
-			console.log(JSON.parse(localStorage.getItem('data')));
 			page = JSON.parse(localStorage.getItem('data'))[username]['page'][0];
-			console.log(page);
-			console.log(localStorage.getItem('data'));
 			window.location.href = `?name=${username}&p=${page}`;
 		}
 
@@ -181,12 +189,12 @@
 		let nextgrades = '';
 		let dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
-		function addGroup(){
+		function addGroup() {
 			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
-			dataGrades.push(['Semetre 1'])
-			data[getParameterByName('name')][getParameterByName('p')] = dataGrades
-			localStorage.setItem("data", JSON.stringify(data))
-			setShowMode("edit")
+			dataGrades.push(['Semestre 1']);
+			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
+			localStorage.setItem('data', JSON.stringify(data));
+			setShowMode('edit');
 		}
 
 		if (dataGrades != null) {
@@ -204,15 +212,18 @@
 				varLenght += 1;
 
 				for (let Branche = 1; Branche < Object.keys(dataGrades[i]).length; Branche++) {
-					varTr += `<tr class="text-white"><td  style="width: 200px;">
+					varTr += `<tr class="text-white"><td  style="width: 170px;">
 						<div class="d-flex justify-content-center" >
 									<span class="hideEdit brancheText">${dataGrades[i][Branche][0].replace('_', ' ')}</span>
-									<input type="text" class="form-control bg-dark text-white brancheInput text-center" style="width: 100%;" data-text=${dataGrades[i][Branche][0]} aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+									<input type="text" class="form-control bg-dark text-white brancheInput text-center" style="width: 100%;" data-text="${dataGrades[i][Branche][0]}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
 								</div>
 						</td>`;
 
 					for (let grade = 1; grade < Object.keys(dataGrades[i][Branche]).length; grade++) {
-						varTr += `<td class="border-1">${dataGrades[i][Branche][grade]}</td>`;
+						varTr += `<td class="border-1" style="width: 10%; padding-left: 0px; padding-right:0px;">
+								<span class="grade">${dataGrades[i][Branche][grade]}</span>
+								<input type="text" class="form-control text-white gradeInput text-center editbutton" style="width: 100%; border:none; background-color: rgba(0, 0, 0, 0);" data-text="${dataGrades[i][Branche][grade]}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+							</td>`;
 					}
 
 					for (let space = 0; space < varLenght - Object.keys(dataGrades[i][Branche]).length - 1; space++) {
@@ -220,12 +231,24 @@
 					}
 
 					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
-					varTr += `<td class="border-0">
-						<div class="editbutton btn btn-secondary badge" style="width: 32px; height: 30px;">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-											<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-										</svg>
-									</div></td>`;
+
+
+
+					varTr += `<td class="border-0" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
+					varTr += `<td class="border-0" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
+						<button type="button" class="btn btn-secondary editbutton" style="width: 40px; height:39px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+							</svg>
+              			</button></td>`;
+					varTr += `<td class="border-0" onclick="rmBranche(${i}, ${Branche})" style="width: 5px; padding-left: 12px; padding-right: 1px;">
+						<button type="button" class="btn btn-secondary editbutton" style="background-color: #DB2F2C; border: none; width: 40px; height:39px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+								<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+							</svg>
+              			</button>
+			</td>`;
 					varTr += '</tr>';
 				}
 
@@ -233,17 +256,24 @@
 							<td class="border-0">
 								<input type="text" class="form-control bg-dark text-white brancheInput newBrancheInput" style="width: 100%;" data-text="" data-number="${i}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
 							</td>
+							<td class="border-0" onclick="setShowMode('edit')" style="width: 5px; padding-left: 4px; padding-right: 1px;">
+								<button type="button" class="btn btn-secondary editbutton" style="width: 40px; height:39px;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+										<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+									</svg>
+								</button>
+							</td>
 						</tr>`;
-
 
 				$('tbody').html(varTr);
 
 				var clonedtable = $('.BeforeGrades').clone();
 
 				clonedtable.find('.title').text(dataGrades[i][0]);
-				clonedtable.find('.newTitlenput').attr('data-text', dataGrades[i][0]);
-				clonedtable.find('.newTitlenput').attr('data-number', i);
+				clonedtable.find('.newTitleInput').attr('data-text', dataGrades[i][0]);
+				clonedtable.find('.newTitleInput').attr('data-number', i);
 				clonedtable.find('#colspanGrade').attr('colspan', varLenght - 2);
+				clonedtable.find('#buttonRmGroup').attr('onclick', `rmGroup(${i})`);
 
 				nextgrades += clonedtable.html();
 			}
@@ -255,10 +285,8 @@
 						<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
 					</svg>
 				</a>
-				</div>`
-			
-		}
-		else{
+				</div>`;
+		} else {
 			nextgrades = `<div class="w-48" onclick="addGroup()">
 				<a type="button" class="btn btn-secondary editbutton" style=" height: 100%; background-color: rgba(92, 99, 106, 0.2); border: none; display: flex; justify-content: center; align-items: center;">
     				<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" style="fill: #ffffff;">
@@ -266,10 +294,52 @@
 						<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
 					</svg>
 				</a>
-				</div>`
+				</div>`;
 		}
 
 		grades.html(nextgrades);
+
+		function rmBranche(idGroup, idBranche) {
+			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+			dataGrades[idGroup].splice(idBranche, 1);
+			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
+			localStorage.setItem('data', JSON.stringify(data));
+			setShowMode('edit');
+		}
+
+		function addGrade(idGroup, idBranche) {
+			$('.newGradeInput').each(function () {
+				console.log();
+				let attr = $(this).attr('data-id');
+
+				if (attr == `${idGroup}-${idBranche}` && $(this).val() != "") {
+					dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+					dataGrades[idGroup][idBranche].push($(this).val());
+					data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
+					localStorage.setItem('data', JSON.stringify(data));
+					setShowMode('edit');
+				}
+			});
+		}
+
+		function rmGroup(idGroup) {
+			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+			dataGrades.splice(idGroup, 1);
+			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
+			localStorage.setItem('data', JSON.stringify(data));
+			setShowMode('edit');
+		}
+
+		function rmPage(){
+			data = JSON.parse(localStorage.getItem('data'));
+			
+			data[getParameterByName('name')][getParameterByName("p")] = {}
+			data[getParameterByName('name')]["page"].splice(data[getParameterByName('name')]["page"].indexOf((getParameterByName("p"))), 1)
+			
+			localStorage.setItem('data', JSON.stringify(data));
+
+			window.location.href = `?name=${getParameterByName("name")}`
+		}
 	</script>
 
 	<script>
@@ -280,7 +350,7 @@
             </div>`;
 
 		let resum = `
-			<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" href="" style="padding-top:9.3px;"><span style="font-weight: 500;">resum</span></a>
+			<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" href="?name=${getParameterByName('name')}&p=resum" style="padding-top:9.3px;"><span style="font-weight: 500;">resum</span></a>
 		`;
 
 		let templatButtonPlus = `<a type="button" data-bs-toggle="modal" data-bs-target="#modalAddPage" class="btn btn-secondary">
@@ -344,9 +414,10 @@
 			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
 			data[getParameterByName('name')][$('#addPageInput').val()] = [];
 			localStorage.setItem('data', JSON.stringify(data));
-			location.reload();
+			location.reload()
 		}
 
+		$('.grade').show();
 		$('.editbutton').hide();
 		$('#validButton').hide();
 		$('#editButton').show();
@@ -355,17 +426,16 @@
 		$('.brancheInput').hide();
 		$('.title').show();
 
-		function changeMode(mode){
-			if(mode == "edit"){
-				window.location.href = `?name=${getParameterByName('name')}&p=${getParameterByName("p")}&e`;
-			}
-			else{
-				setShowMode()
-				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
+		function changeMode(mode) {
+			if (mode == 'edit') {
+				window.location.href = `?name=${getParameterByName('name')}&p=${getParameterByName('p')}&e`;
+			} else {
+				setShowMode();
 			}
 		}
 
 		function setEditMode() {
+			$('.grade').hide();
 			$('.editbutton').show();
 			$('#validButton').show();
 			$('#editButton').hide();
@@ -382,18 +452,21 @@
 			$('.title').each(function () {
 				$(this).val($(this).attr('data-text').replace('_', ' '));
 			});
+
+			$('.gradeInput').each(function () {
+				$(this).val($(this).attr('data-text'));
+			});
 		}
 
 		function setShowMode(mode) {
-			console.log($('#editPageInput').val());
 			data = JSON.parse(localStorage.getItem('data'));
 
-			$('.newTitlenput').each(function () {
-				if ($(this).val() != '' && $(this).attr('data-number') != '') {
-					console.log('oui');
-					data[getParameterByName('name')][getParameterByName('p')][$(this).attr('data-number')][0] = $(this).val().replace('_', ' ');
-					console.log('douhble oui');
-				}
+			$('.newTitleInput').each(function () {
+				try {
+					if ($(this).val() != '' && $(this).attr('data-number') != '') {
+						data[getParameterByName('name')][getParameterByName('p')][$(this).attr('data-number')][0] = $(this).val().replace('_', ' ');
+					}
+				} catch (error) {}
 			});
 
 			$('.newBrancheInput').each(function () {
@@ -414,29 +487,29 @@
 			}
 
 			$('.brancheInput').each(function () {
-					for (let i = 0; i <= data[getParameterByName('name')][getParameterByName('p')].length - 1; i++) {
-						for (let j = 1; j < data[getParameterByName('name')][getParameterByName('p')][i].length; j++) {
-							if (data[getParameterByName('name')][getParameterByName('p')][i][j][0] == $(this).attr('data-text')) {
-								data[getParameterByName('name')][getParameterByName('p')][i][j][0] = $(this).val().replace(' ', '_');
-								console.log(data[getParameterByName('name')][getParameterByName('p')][i][j][0], $(this).val());
-							}
+				for (let i = 0; i <= data[getParameterByName('name')][getParameterByName('p')].length - 1; i++) {
+					for (let j = 1; j < data[getParameterByName('name')][getParameterByName('p')][i].length; j++) {
+						if (data[getParameterByName('name')][getParameterByName('p')][i][j][0] == $(this).attr('data-text')) {
+							data[getParameterByName('name')][getParameterByName('p')][i][j][0] = $(this).val().replace(' ', '_');
 						}
 					}
+				}
+			});
+
+			$('.gradeInput').each(function () {
+				console.log($(this).val());
 			});
 
 			localStorage.setItem('data', JSON.stringify(data));
-			console.log($('#editPageInput').val());
-			if(mode == "edit"){
+			if (mode == 'edit') {
 				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}&e`;
-			}
-			else{
+			} else {
 				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}`;
 			}
 		}
 
-		if(getParameterByName("e") == ""){
-			setEditMode()
+		if (getParameterByName('e') == '') {
+			setEditMode();
 		}
-		
 	</script>
 </html>
