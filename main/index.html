@@ -222,7 +222,7 @@
 					for (let grade = 1; grade < Object.keys(dataGrades[i][Branche]).length; grade++) {
 						varTr += `<td class="border-1" style="width: 10%; padding-left: 0px; padding-right:0px;">
 								<span class="grade">${dataGrades[i][Branche][grade]}</span>
-								<input type="text" class="form-control text-white gradeInput text-center editbutton" style="width: 100%; border:none; background-color: rgba(0, 0, 0, 0);" data-text="${dataGrades[i][Branche][grade]}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
+								<input type="text" class="form-control text-white gradeInput text-center editbutton" style="width: 100%; border:none; background-color: rgba(0, 0, 0, 0);" data-branche="${Branche}" data-group="${i}" data-grade="${grade}" data-text="${dataGrades[i][Branche][grade]}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
 							</td>`;
 					}
 
@@ -232,16 +232,14 @@
 
 					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
 
-
-
-					varTr += `<td class="border-0" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
-					varTr += `<td class="border-0" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
+					varTr += `<td class="border-0 editbutton" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
+					varTr += `<td class="border-0 editbutton" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
 						<button type="button" class="btn btn-secondary editbutton" style="width: 40px; height:39px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
 								<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
 							</svg>
               			</button></td>`;
-					varTr += `<td class="border-0" onclick="rmBranche(${i}, ${Branche})" style="width: 5px; padding-left: 12px; padding-right: 1px;">
+					varTr += `<td class="border-0 editbutton" onclick="rmBranche(${i}, ${Branche})" style="width: 5px; padding-left: 12px; padding-right: 1px;">
 						<button type="button" class="btn btn-secondary editbutton" style="background-color: #DB2F2C; border: none; width: 40px; height:39px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
@@ -253,10 +251,10 @@
 				}
 
 				varTr += `<tr>
-							<td class="border-0">
+							<td class="border-0 editbutton">
 								<input type="text" class="form-control bg-dark text-white brancheInput newBrancheInput" style="width: 100%;" data-text="" data-number="${i}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
 							</td>
-							<td class="border-0" onclick="setShowMode('edit')" style="width: 5px; padding-left: 4px; padding-right: 1px;">
+							<td class="border-0 editbutton" onclick="setShowMode('edit')" style="width: 5px; padding-left: 4px; padding-right: 1px;">
 								<button type="button" class="btn btn-secondary editbutton" style="width: 40px; height:39px;">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
 										<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
@@ -278,7 +276,7 @@
 				nextgrades += clonedtable.html();
 			}
 
-			nextgrades += `<div class="w-48" onclick="addGroup()">
+			nextgrades += `<div class="w-48 editbutton" onclick="addGroup()">
 				<a type="button" class="btn btn-secondary editbutton" style=" height: 100%; background-color: rgba(92, 99, 106, 0.2); border: none; display: flex; justify-content: center; align-items: center;">
     				<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" style="fill: #ffffff;">
 						<!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -287,7 +285,7 @@
 				</a>
 				</div>`;
 		} else {
-			nextgrades = `<div class="w-48" onclick="addGroup()">
+			nextgrades = `<div class="w-48 editbutton" onclick="addGroup()">
 				<a type="button" class="btn btn-secondary editbutton" style=" height: 100%; background-color: rgba(92, 99, 106, 0.2); border: none; display: flex; justify-content: center; align-items: center;">
     				<svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512" style="fill: #ffffff;">
 						<!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -312,7 +310,7 @@
 				console.log();
 				let attr = $(this).attr('data-id');
 
-				if (attr == `${idGroup}-${idBranche}` && $(this).val() != "") {
+				if (attr == `${idGroup}-${idBranche}` && $(this).val() != '') {
 					dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 					dataGrades[idGroup][idBranche].push($(this).val());
 					data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
@@ -330,15 +328,15 @@
 			setShowMode('edit');
 		}
 
-		function rmPage(){
+		function rmPage() {
 			data = JSON.parse(localStorage.getItem('data'));
-			
-			data[getParameterByName('name')][getParameterByName("p")] = {}
-			data[getParameterByName('name')]["page"].splice(data[getParameterByName('name')]["page"].indexOf((getParameterByName("p"))), 1)
-			
+
+			data[getParameterByName('name')][getParameterByName('p')] = {};
+			data[getParameterByName('name')]['page'].splice(data[getParameterByName('name')]['page'].indexOf(getParameterByName('p')), 1);
+
 			localStorage.setItem('data', JSON.stringify(data));
 
-			window.location.href = `?name=${getParameterByName("name")}`
+			window.location.href = `?name=${getParameterByName('name')}`;
 		}
 	</script>
 
@@ -414,7 +412,7 @@
 			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
 			data[getParameterByName('name')][$('#addPageInput').val()] = [];
 			localStorage.setItem('data', JSON.stringify(data));
-			location.reload()
+			location.reload();
 		}
 
 		$('.grade').show();
@@ -458,6 +456,23 @@
 			});
 		}
 
+		function setColor(Object) {
+			console.log(Object);
+			const value = parseFloat(Object.val());
+
+			Object.parent().attr("class", "border-1");
+
+			if (value >= 1) {
+				Object.parent().addClass('red');
+			}
+			if (value >= 4) {
+				Object.parent().addClass('orange');
+			}
+			if (value >= 5) {
+				Object.parent().addClass('green');
+			}
+		}
+
 		function setShowMode(mode) {
 			data = JSON.parse(localStorage.getItem('data'));
 
@@ -496,11 +511,8 @@
 				}
 			});
 
-			$('.gradeInput').each(function () {
-				console.log($(this).val());
-			});
-
 			localStorage.setItem('data', JSON.stringify(data));
+
 			if (mode == 'edit') {
 				window.location.href = `?name=${getParameterByName('name')}&p=${$('#editPageInput').val()}&e`;
 			} else {
@@ -511,5 +523,20 @@
 		if (getParameterByName('e') == '') {
 			setEditMode();
 		}
+
+		$('.gradeInput').on('change keyup paste', function () {
+			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+
+			dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')][$(this).attr('data-grade')] = $(this).val();
+			console.log(dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')][$(this).attr('data-grade')]);
+			console.log(dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')]);
+			console.log(dataGrades[$(this).attr('data-group')]);
+			console.log(1);
+
+			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
+			localStorage.setItem('data', JSON.stringify(data));
+
+			setColor($(this));
+		});
 	</script>
 </html>
