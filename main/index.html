@@ -230,7 +230,7 @@
 						varTr += `<td class="border-1"></td>`;
 					}
 
-					varTr += `<td>${getAverage(dataGrades[i][Branche])}</td>`;
+					varTr += `<td id="average" data-group="${i}" data-branche="${Branche}">${getAverage(dataGrades[i][Branche])}</td>`;
 
 					varTr += `<td class="border-0 editbutton" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
 					varTr += `<td class="border-0 editbutton" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
@@ -471,6 +471,12 @@
 			if (value >= 5) {
 				Object.parent().addClass('green');
 			}
+
+			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
+
+			console.log(dataGrades[Object.parent().parent().find("#average").attr("data-group")][Object.parent().parent().find("#average").attr("data-branche")]);
+
+			Object.parent().parent().find("#average").text(getAverage(dataGrades[Object.parent().parent().find("#average").attr("data-group")][Object.parent().parent().find("#average").attr("data-branche")]))
 		}
 
 		function setShowMode(mode) {
