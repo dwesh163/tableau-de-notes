@@ -39,6 +39,9 @@
 										</svg>
 									</button>
 								</div>
+								<div class="btn btn-success w-25">
+									<span style="font-size: 1.3rem;">Ça passe</span>
+								</div>
 
 								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
 							</div>
@@ -162,6 +165,7 @@
 		function getAverage(numbers) {
 			numbers.shift();
 
+			numbers = numbers.filter(number => number !== "");
 			return Math.round(numAverage(numbers) * 2) / 2;
 		}
 
@@ -409,10 +413,12 @@
 	<script>
 		data = JSON.parse(localStorage.getItem('data'));
 		function SetNewPage() {
-			data[getParameterByName('name')]['page'].push($('#addPageInput').val());
-			data[getParameterByName('name')][$('#addPageInput').val()] = [];
-			localStorage.setItem('data', JSON.stringify(data));
-			location.reload();
+			if ($('#addPageInput').val() != ""){
+				data[getParameterByName('name')]['page'].push($('#addPageInput').val());
+				data[getParameterByName('name')][$('#addPageInput').val()] = [];
+				localStorage.setItem('data', JSON.stringify(data));
+				location.reload();
+			}
 		}
 
 		$('.grade').show();
