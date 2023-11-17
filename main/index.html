@@ -40,7 +40,7 @@
 									</button>
 								</div>
 								<div class="btn btn-success w-25">
-									<span style="font-size: 1.3rem;">Ça passe</span>
+									<span style="font-size: 1.3rem">Ça passe</span>
 								</div>
 
 								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
@@ -162,11 +162,18 @@
 	</script>
 
 	<script>
-		function getAverage(numbers) {
-			numbers.shift();
+		function getAverage(numbers, round) {
+			if(isNaN(numbers[0])){
+				numbers.shift();
+			}
 
-			numbers = numbers.filter(number => number !== "");
-			return Math.round(numAverage(numbers) * 2) / 2;
+			numbers = numbers.filter((number) => number !== '');
+			
+			if (round == '0.1') {
+				return Math.round(numAverage(numbers) * 10) / 10;
+			} else {
+				return Math.round(numAverage(numbers) * 2) / 2;
+			}
 		}
 
 		function numAverage(a, f) {
@@ -214,6 +221,8 @@
 				}
 
 				varLenght += 1;
+				maxGrade = 0;
+				allGrade = []
 
 				for (let Branche = 1; Branche < Object.keys(dataGrades[i]).length; Branche++) {
 					varTr += `<tr class="text-white"><td  style="width: 170px;">
@@ -228,13 +237,25 @@
 								<span class="grade">${dataGrades[i][Branche][grade]}</span>
 								<input type="text" class="form-control text-white gradeInput text-center editbutton" style="width: 100%; border:none; background-color: rgba(0, 0, 0, 0);" data-branche="${Branche}" data-group="${i}" data-grade="${grade}" data-text="${dataGrades[i][Branche][grade]}" aria-label="Sizing example input" aria-describedby="" autocomplete="off" />
 							</td>`;
+
+						if (grade > maxGrade) {
+							maxGrade = grade;
+						}
 					}
 
 					for (let space = 0; space < varLenght - Object.keys(dataGrades[i][Branche]).length - 1; space++) {
 						varTr += `<td class="border-1"></td>`;
 					}
 
-					varTr += `<td id="average" data-group="${i}" data-branche="${Branche}">${getAverage(dataGrades[i][Branche])}</td>`;
+					average = getAverage(dataGrades[i][Branche])
+
+					if(isNaN(average)){
+						average = ""
+					}
+
+					varTr += `<td id="average" data-group="${i}" data-branche="${Branche}">${average}</td>`;
+
+					allGrade.push(average)
 
 					varTr += `<td class="border-0 editbutton" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
 					varTr += `<td class="border-0 editbutton" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
@@ -250,7 +271,7 @@
 								<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
 							</svg>
               			</button>
-			</td>`;
+						</td>`;
 					varTr += '</tr>';
 				}
 
@@ -264,8 +285,17 @@
 										<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
 									</svg>
 								</button>
-							</td>
-						</tr>`;
+							</td>`;
+
+				varTr += `<tr>
+					<td class="border-0" colspan="${maxGrade + 1}">
+						<span class="brancheText text-white" style="text-align: ">Moyenne</span> 
+					</td>
+					<td class="border-0">
+						<span class="brancheText text-white">${getAverage(allGrade, "0.1")}</span>
+					</td>
+					
+				</tr>`;
 
 				$('tbody').html(varTr);
 
@@ -311,7 +341,6 @@
 
 		function addGrade(idGroup, idBranche) {
 			$('.newGradeInput').each(function () {
-				console.log();
 				let attr = $(this).attr('data-id');
 
 				if (attr == `${idGroup}-${idBranche}` && $(this).val() != '') {
@@ -413,7 +442,7 @@
 	<script>
 		data = JSON.parse(localStorage.getItem('data'));
 		function SetNewPage() {
-			if ($('#addPageInput').val() != ""){
+			if ($('#addPageInput').val() != '') {
 				data[getParameterByName('name')]['page'].push($('#addPageInput').val());
 				data[getParameterByName('name')][$('#addPageInput').val()] = [];
 				localStorage.setItem('data', JSON.stringify(data));
@@ -463,10 +492,9 @@
 		}
 
 		function setColor(Object) {
-			console.log(Object);
 			const value = parseFloat(Object.val());
 
-			Object.parent().attr("class", "border-1");
+			Object.parent().attr('class', 'border-1');
 
 			if (value >= 1) {
 				Object.parent().addClass('red');
@@ -480,9 +508,11 @@
 
 			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
-			console.log(dataGrades[Object.parent().parent().find("#average").attr("data-group")][Object.parent().parent().find("#average").attr("data-branche")]);
 
-			Object.parent().parent().find("#average").text(getAverage(dataGrades[Object.parent().parent().find("#average").attr("data-group")][Object.parent().parent().find("#average").attr("data-branche")]))
+			Object.parent()
+				.parent()
+				.find('#average')
+				.text(getAverage(dataGrades[Object.parent().parent().find('#average').attr('data-group')][Object.parent().parent().find('#average').attr('data-branche')]));
 		}
 
 		function setShowMode(mode) {
@@ -540,10 +570,6 @@
 			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
 
 			dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')][$(this).attr('data-grade')] = $(this).val();
-			console.log(dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')][$(this).attr('data-grade')]);
-			console.log(dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')]);
-			console.log(dataGrades[$(this).attr('data-group')]);
-			console.log(1);
 
 			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
 			localStorage.setItem('data', JSON.stringify(data));
