@@ -39,8 +39,8 @@
 										</svg>
 									</button>
 								</div>
-								<div class="btn btn-success w-25">
-									<span style="font-size: 1.3rem">Ça passe</span>
+								<div class="w-25" id="indicator" style="border-radius: 8px; padding-top: 5px">
+									<span class="text-white text-uppercase" id="indicatorText" style="font-size: 1.3rem"></span>
 								</div>
 
 								<h2 class="fw-bold text-uppercase" id="username" style="text-align: left"></h2>
@@ -163,12 +163,12 @@
 
 	<script>
 		function getAverage(numbers, round) {
-			if(isNaN(numbers[0])){
+			if (isNaN(numbers[0])) {
 				numbers.shift();
 			}
 
 			numbers = numbers.filter((number) => number !== '');
-			
+
 			if (round == '0.1') {
 				return Math.round(numAverage(numbers) * 10) / 10;
 			} else {
@@ -222,7 +222,7 @@
 
 				varLenght += 1;
 				maxGrade = 0;
-				allGrade = []
+				allGrade = [];
 
 				for (let Branche = 1; Branche < Object.keys(dataGrades[i]).length; Branche++) {
 					varTr += `<tr class="text-white"><td  style="width: 170px;">
@@ -247,15 +247,15 @@
 						varTr += `<td class="border-1"></td>`;
 					}
 
-					average = getAverage(dataGrades[i][Branche])
+					average = getAverage(dataGrades[i][Branche]);
 
-					if(isNaN(average)){
-						average = ""
+					if (isNaN(average)) {
+						average = '';
 					}
 
-					varTr += `<td id="average" data-group="${i}" data-branche="${Branche}">${average}</td>`;
+					varTr += `<td class="color" id="average" data-group="${i}" data-branche="${Branche}">${average}</td>`;
 
-					allGrade.push(average)
+					allGrade.push(average);
 
 					varTr += `<td class="border-0 editbutton" style="width: 50px; padding-left: 17px; padding-right: 1px;"><input type="text" class="newGradeInput fw-bold text-uppercase form-control bg-dark text-white editbutton" data-id='${i}-${Branche}' style="width: 50px;" aria-describedby="inputGroup-sizing-sm" autocomplete="off" /></td>`;
 					varTr += `<td class="border-0 editbutton" onclick="addGrade(${i}, ${Branche})" style="width: 5px; padding-left: 4px; padding-right: 1px;">
@@ -287,12 +287,12 @@
 								</button>
 							</td>`;
 
-				varTr += `<tr>
+				varTr += `<tr class="text-white">
 					<td class="border-0" colspan="${maxGrade + 1}">
-						<span class="brancheText text-white" style="text-align: ">Moyenne</span> 
+						<span class="brancheText text-white" style="text-align: end;">Moyenne</span>
 					</td>
-					<td class="border-0">
-						<span class="brancheText text-white">${getAverage(allGrade, "0.1")}</span>
+					<td class="border-0 color">
+						<span class="brancheText averageGroup text-white">${getAverage(allGrade, '0.1')}</span>
 					</td>
 					
 				</tr>`;
@@ -380,10 +380,6 @@
 				<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" style="padding-top:9.3px;"><span style="font-weight: 500;"></span></a>
             </div>`;
 
-		let resum = `
-			<a class="btn btn-secondary text-white text-uppercase font-weight-bold" role="button" href="?name=${getParameterByName('name')}&p=resum" style="padding-top:9.3px;"><span style="font-weight: 500;">resum</span></a>
-		`;
-
 		let templatButtonPlus = `<a type="button" data-bs-toggle="modal" data-bs-target="#modalAddPage" class="btn btn-secondary">
 							<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
 								<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -416,7 +412,6 @@
 			nextButton += clonedbutton.html();
 		}
 
-		nextButton += resum;
 		nextButton += templatButtonPlus;
 		containerButton.html(nextButton);
 	</script>
@@ -437,6 +432,33 @@
 				cell.classList.add('green');
 			}
 		});
+
+		const averages = document.querySelectorAll('.color');
+
+		data = JSON.parse(localStorage.getItem('data'))
+		dataAverage = data[getParameterByName('name')];
+
+		averages.forEach((average) => {
+			const value = parseFloat(average.textContent);
+
+			if (value < 4) {
+				average.classList.add('red');
+				$('#indicator').attr('class', 'red w-25');
+				$('#indicatorText').text('unsuccess');
+				dataAverage['status'] = 'unsuccess';
+			} else if (value == 4) {
+				$('#indicator').attr('class', 'orange w-25');
+				$('#indicatorText').text('limit');
+				dataAverage['status'] = 'limit';
+			} else {
+				$('#indicator').attr('class', 'green w-25');
+				$('#indicatorText').text('success');
+				dataAverage['status'] = 'success';
+			}
+		});
+
+		data[getParameterByName('name')] = dataAverage;
+		localStorage.setItem('data', JSON.stringify(data));
 	</script>
 
 	<script>
@@ -505,9 +527,17 @@
 			if (value >= 5) {
 				Object.parent().addClass('green');
 			}
+			const averages = document.querySelectorAll('.color');
+
+			averages.forEach((average) => {
+				const value = parseFloat(average.textContent);
+
+				if (value < 4) {
+					average.classList.add('red');
+				}
+			});
 
 			dataGrades = JSON.parse(localStorage.getItem('data'))[getParameterByName('name')][getParameterByName('p')];
-
 
 			Object.parent()
 				.parent()
@@ -517,6 +547,8 @@
 
 		function setShowMode(mode) {
 			data = JSON.parse(localStorage.getItem('data'));
+
+			data[getParameterByName('name')][getParameterByName('p')]['modified'] = new Date().toLocaleDateString('fr-FR');
 
 			$('.newTitleInput').each(function () {
 				try {
@@ -571,10 +603,13 @@
 
 			dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')][$(this).attr('data-grade')] = $(this).val();
 
+			dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')] = dataGrades[$(this).attr('data-group')][$(this).attr('data-branche')].filter((number) => number !== '');
+
 			data[getParameterByName('name')][getParameterByName('p')] = dataGrades;
 			localStorage.setItem('data', JSON.stringify(data));
 
 			setColor($(this));
+			location.reload();
 		});
 	</script>
 </html>

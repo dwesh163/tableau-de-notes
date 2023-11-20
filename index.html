@@ -17,7 +17,7 @@
 		<meta name="theme-color" content="#ffffff" />
 	</head>
 	<body>
-		<form action="" , id="loginForm">
+		<form action="" id="loginForm">
 			<section class="vh-100 gradient-custom">
 				<div class="container py-5 h-100">
 					<div class="row d-flex justify-content-center align-items-center h-100">
@@ -56,7 +56,7 @@
 
 		<div class="BeforeLogin">
 			<tr class="trClass">
-				<td style="cursor: pointer" onclick="window.location.href='main'">
+				<td>
 					<h4 class="fw-bold mb-1 text-white Name">Nom Prenom</h4>
 					<span class="text-white-50">last modified 01.11.2023</span>
 				</td>
@@ -79,9 +79,21 @@
 				clonedRow.find('.Name').text(`${data[person]['name']} ${data[person]['lastname']}`);
 				clonedRow.find('.text-white-50').text('last modified ' + data[person]['modified']);
 
+				console.log(data[person]['status']);
+
+				color = ""
+
+				if(data[person]['status'] == "unsuccess"){
+					color = "background-color: rgb(228, 42, 42);"
+				}
+				if(data[person]['status'] == "limit"){
+					color = "background-color: rgb(228, 169, 42);"
+				}
+				
+
 				nextTbody += `
           <tr>
-            <td style="cursor: pointer;" onclick="window.location.href='main/?name=${data[person]['name']}.${data[person]['lastname']}'">
+            <td style="cursor: pointer; ${color}" onclick="window.location.href='main/?name=${data[person]['name']}.${data[person]['lastname']}'">
               ${clonedRow.html()}
             </td>
           </tr>`;

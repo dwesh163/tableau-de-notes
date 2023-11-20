@@ -54,7 +54,8 @@ function getInfo(event) {
 				lastname: lastName,
 				type: 'local',
 				modified: new Date().toLocaleDateString('fr-FR'),
-				page: ['cours']
+				page: ['cours'],
+				cours: [['Semetre 1', ['branche', 6]]],
 			};
 
 			data[`${name}.${lastName}`] = dataObjet;

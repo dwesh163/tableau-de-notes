@@ -24,6 +24,16 @@
     background-color: rgb(62, 204, 33);
 }
 
+.red{
+    background-color: rgb(228, 42, 42);
+}
+.orange{
+    background-color: rgb(228, 169, 42);
+}
+.green{
+    background-color: rgb(62, 204, 33);
+}
+
 @media (max-width: 1000px) {
     .w-48 {
         width: 100%;
